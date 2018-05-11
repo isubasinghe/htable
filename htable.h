@@ -30,6 +30,7 @@ void printf_table(hash_t *);
 
 hash_t *new_hash_table(int);
 
+// TODO: implement a move to front
 void move_to_front(slot_t *);
 
 void insert_to_slot(slot_t *, char *, int );
