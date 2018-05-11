@@ -12,6 +12,7 @@
 
 #include "hash.h"
 
+
 typedef struct {
     char **keys;
     int *vals;
@@ -25,17 +26,23 @@ typedef struct {
     int seed;
 } hash_t;
 
+void printf_table(hash_t *);
+
 hash_t *new_hash_table(int);
 
-void hash_table_put(hash_t *, char *, int);
-
-bool hash_table_has(hash_t *, char *);
+void move_to_front(slot_t *);
 
 void insert_to_slot(slot_t *, char *, int );
 
 bool slot_has(slot_t *, char *);
 
 int slot_get(slot_t *, char *);
+
+void hash_table_put(hash_t *, char *, int);
+
+bool hash_table_has(hash_t *, char *);
+
+void free_slot(slot_t *);
 
 void free_slots(hash_t *);
 
