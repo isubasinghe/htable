@@ -2,7 +2,9 @@
 #define HTABLE_H
 
 #define SEED 73802
-#define INITAL_SIZE 128
+#ifndef INITAL_SIZE
+#define INITAL_SIZE 2
+#endif // INITIAL_SIZE
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,7 +13,6 @@
 #include <string.h>
 
 #include "hash.h"
-
 
 typedef struct {
     char **keys;
@@ -24,14 +25,11 @@ typedef struct {
     slot_t *slots;
     int nslots;
     int seed;
-} hash_t;
+} htable_t;
 
-void printf_table(hash_t *);
 
-hash_t *new_hash_table(int);
 
-// TODO: implement a move to front
-void move_to_front(slot_t *);
+htable_t *new_hash_table(int);
 
 void insert_to_slot(slot_t *, char *, int );
 
@@ -39,14 +37,16 @@ bool slot_has(slot_t *, char *);
 
 int slot_get(slot_t *, char *);
 
-void hash_table_put(hash_t *, char *, int);
+int hash_table_gets(htable_t *, char *, int *);
 
-bool hash_table_has(hash_t *, char *);
+void hash_table_put(htable_t *, char *, int);
+
+bool hash_table_has(htable_t *, char *);
 
 void free_slot(slot_t *);
 
-void free_slots(hash_t *);
+void free_slots(htable_t *);
 
-void free_hash_table(hash_t *);
+void free_hash_table(htable_t *);
 
 #endif // HTABLE_H
